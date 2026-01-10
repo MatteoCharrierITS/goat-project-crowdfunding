@@ -11,10 +11,10 @@ function timeAgo(timestamp) {
     const hours = Math.floor(diff / 3600000);
     const days = Math.floor(diff / 86400000);
 
-    if (minutes < 1) return 'Proprio ora';
-    if (minutes < 60) return `${minutes} minuti fa`;
-    if (hours < 24) return `${hours} ore fa`;
-    return `${days} giorni fa`;
+    if (minutes < 1) return 'Just now';
+    if (minutes < 60) return `${minutes} minutes ago`;
+    if (hours < 24) return `${hours} hours ago`;
+    return `${days} days ago`;
 }
 
 // Funzione per ottenere le iniziali del nome
@@ -36,7 +36,7 @@ async function loadCrowdfundingData() {
         updateStats(data);
         updateDonorsList(data.recentDonors);
     } catch (error) {
-        console.error('Errore nel caricamento dei dati:', error);
+        console.error('Error loading data:', error);
         // Usa dati di fallback se il server non è disponibile
         updateStats({
             totalRaised: 0,
@@ -57,11 +57,11 @@ function updateStats(data) {
     const progressTextEl = document.getElementById('progressText');
 
     if (totalRaisedEl) {
-        totalRaisedEl.textContent = `€${data.totalRaised.toLocaleString('it-IT')}`;
+        totalRaisedEl.textContent = `€${data.totalRaised.toLocaleString('en-US')}`;
     }
     
     if (goalAmountEl) {
-        goalAmountEl.textContent = `€${data.goal.toLocaleString('it-IT')}`;
+        goalAmountEl.textContent = `€${data.goal.toLocaleString('en-US')}`;
     }
     
     if (donorsCountEl) {
@@ -81,7 +81,7 @@ function updateDonorsList(donors) {
     if (!donorsListEl) return;
 
     if (donors.length === 0) {
-        donorsListEl.innerHTML = '<p class="no-donors">Sii il primo a sostenere il nostro progetto!</p>';
+        donorsListEl.innerHTML = '<p class="no-donors">Be the first to support our project!</p>';
         return;
     }
 
@@ -90,7 +90,7 @@ function updateDonorsList(donors) {
             <div class="donor-avatar">${getInitials(donor.name)}</div>
             <div class="donor-info">
                 <h4>${donor.name}</h4>
-                <div class="donor-amount">€${donor.amount.toLocaleString('it-IT')}</div>
+                <div class="donor-amount">€${donor.amount.toLocaleString('en-US')}</div>
                 <div class="donor-time">${timeAgo(donor.timestamp)}</div>
                 ${donor.message ? `<div class="donor-message">"${donor.message}"</div>` : ''}
             </div>

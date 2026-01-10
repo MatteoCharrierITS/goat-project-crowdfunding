@@ -1,3 +1,4 @@
+
 // API endpoint - usa URL relativo per funzionare sia in locale che in produzione
 const API_URL = window.location.hostname === 'localhost' 
     ? 'http://localhost:3000/api' 
@@ -11,10 +12,10 @@ function timeAgo(timestamp) {
     const hours = Math.floor(diff / 3600000);
     const days = Math.floor(diff / 86400000);
 
-    if (minutes < 1) return 'Proprio ora';
-    if (minutes < 60) return `${minutes} minuti fa`;
-    if (hours < 24) return `${hours} ore fa`;
-    return `${days} giorni fa`;
+    if (minutes < 1) return 'Just now';
+    if (minutes < 60) return `${minutes} minutes ago`;
+    if (hours < 24) return `${hours} hours ago`;
+    return `${days} days ago`;
 }
 
 // Funzione per ottenere le iniziali del nome
@@ -36,7 +37,7 @@ async function loadCrowdfundingData() {
         updateSummaryStats(data);
         updateRecentDonors(data.recentDonors);
     } catch (error) {
-        console.error('Errore nel caricamento dei dati:', error);
+        console.error('Error loading data:', error);
         updateSummaryStats({
             totalRaised: 0,
             goal: 10000,
@@ -56,11 +57,11 @@ function updateSummaryStats(data) {
     const progressTextEl = document.getElementById('contributionProgressText');
 
     if (summaryRaisedEl) {
-        summaryRaisedEl.textContent = `€${data.totalRaised.toLocaleString('it-IT')}`;
+        summaryRaisedEl.textContent = `€${data.totalRaised.toLocaleString('en-US')}`;
     }
     
     if (summaryGoalEl) {
-        summaryGoalEl.textContent = `€${data.goal.toLocaleString('it-IT')}`;
+        summaryGoalEl.textContent = `€${data.goal.toLocaleString('en-US')}`;
     }
     
     if (summaryDonorsEl) {
@@ -80,7 +81,7 @@ function updateRecentDonors(donors) {
     if (!recentDonorsGridEl) return;
 
     if (donors.length === 0) {
-        recentDonorsGridEl.innerHTML = '<p class="no-donors">Nessuna donazione ancora</p>';
+        recentDonorsGridEl.innerHTML = '<p class="no-donors">No donations yet</p>';
         return;
     }
 
@@ -89,7 +90,7 @@ function updateRecentDonors(donors) {
             <div class="donor-avatar">${getInitials(donor.name)}</div>
             <div class="donor-info">
                 <h4>${donor.name}</h4>
-                <div class="donor-amount">€${donor.amount.toLocaleString('it-IT')}</div>
+                <div class="donor-amount">€${donor.amount.toLocaleString('en-US')}</div>
                 <div class="donor-time">${timeAgo(donor.timestamp)}</div>
                 ${donor.message ? `<div class="donor-message">"${donor.message}"</div>` : ''}
             </div>
@@ -137,9 +138,9 @@ donationForm.addEventListener('submit', async function(e) {
         message: document.getElementById('donorMessage').value.trim()
     };
 
-    // Validazione
+    // Validation
     if (!formData.amount || formData.amount <= 0) {
-        alert('Inserisci un importo valido');
+        alert('Please enter a valid amount');
         return;
     }
 
@@ -160,19 +161,19 @@ donationForm.addEventListener('submit', async function(e) {
         const result = await response.json();
 
         if (response.ok) {
-            // Mostra il messaggio di successo
-            donatedAmountEl.textContent = `€${formData.amount.toLocaleString('it-IT')}`;
+            // Show success message
+            donatedAmountEl.textContent = `€${formData.amount.toLocaleString('en-US')}`;
             donationForm.style.display = 'none';
             successMessage.style.display = 'block';
 
-            // Aggiorna i dati
+            // Update data
             loadCrowdfundingData();
         } else {
-            alert('Errore nell\'elaborazione della donazione. Riprova.');
+            alert('Error processing donation. Please try again.');
         }
     } catch (error) {
-        console.error('Errore:', error);
-        alert('Errore di connessione. Verifica che il server sia avviato.');
+        console.error('Error:', error);
+        alert('Connection error. Please verify that the server is running.');
     } finally {
         // Ripristina il pulsante
         submitText.style.display = 'inline';
