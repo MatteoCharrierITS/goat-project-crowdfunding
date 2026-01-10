@@ -1,0 +1,23 @@
+# Dipendenze
+node_modules/
+
+# File di log
+*.log
+npm-debug.log*
+
+# File di sistema
+.DS_Store
+Thumbs.db
+
+# Variabili d'ambiente
+.env
+.env.local
+
+# Dati locali (opzionale: rimuovi questa riga se vuoi committare i dati iniziali)
+data/crowdfunding-data.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

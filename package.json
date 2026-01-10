@@ -1,0 +1,28 @@
+{
+  "name": "sito-capra-crowdfunding",
+  "version": "1.0.0",
+  "description": "Sito web di crowdfunding per il Progetto Capra",
+  "main": "server.js",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "crowdfunding",
+    "nodejs",
+    "express",
+    "capra"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

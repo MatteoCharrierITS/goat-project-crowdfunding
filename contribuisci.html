@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribuisci - Progetto Capra</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header con Navigazione -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <h1>🐐 Progetto Capra</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#hero">Home</a></li>
+                <li><a href="index.html#about">Chi Siamo</a></li>
+                <li><a href="index.html#goals">Obiettivi</a></li>
+                <li><a href="contribuisci.html" class="nav-cta">Contribuisci</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contribution Section -->
+    <section class="contribution-section">
+        <div class="container">
+            <div class="contribution-wrapper">
+                <!-- Progress Summary -->
+                <div class="contribution-summary">
+                    <h2>Stato del Crowdfunding</h2>
+                    <div class="summary-stats">
+                        <div class="summary-stat">
+                            <span class="summary-label">Raccolti</span>
+                            <span class="summary-value" id="summaryRaised">€0</span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="summary-label">Obiettivo</span>
+                            <span class="summary-value" id="summaryGoal">€10,000</span>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="contributionProgressFill"></div>
+                        </div>
+                        <span class="progress-text" id="contributionProgressText">0%</span>
+                    </div>
+                    <div class="summary-donors">
+                        <span id="summaryDonors">0</span> sostenitori hanno già contribuito
+                    </div>
+                </div>
+
+                <!-- Contribution Form -->
+                <div class="contribution-form-container">
+                    <h2>Fai la Tua Donazione</h2>
+                    <p class="form-description">Ogni contributo ci aiuta a realizzare il nostro sogno</p>
+                    
+                    <form id="donationForm" class="donation-form">
+                        <!-- Amount Selection -->
+                        <div class="form-group">
+                            <label>Seleziona l'importo</label>
+                            <div class="amount-options">
+                                <button type="button" class="amount-btn" data-amount="10">€10</button>
+                                <button type="button" class="amount-btn" data-amount="25">€25</button>
+                                <button type="button" class="amount-btn" data-amount="50">€50</button>
+                                <button type="button" class="amount-btn" data-amount="100">€100</button>
+                                <button type="button" class="amount-btn" data-amount="250">€250</button>
+                            </div>
+                        </div>
+
+                        <!-- Custom Amount -->
+                        <div class="form-group">
+                            <label for="customAmount">O inserisci un importo personalizzato</label>
+                            <div class="input-with-icon">
+                                <span class="input-icon">€</span>
+                                <input type="number" id="customAmount" name="amount" min="1" step="1" placeholder="Importo personalizzato" required>
+                            </div>
+                        </div>
+
+                        <!-- Donor Name -->
+                        <div class="form-group">
+                            <label for="donorName">Il tuo nome</label>
+                            <input type="text" id="donorName" name="name" placeholder="Nome o Anonimo" required>
+                        </div>
+
+                        <!-- Optional Message -->
+                        <div class="form-group">
+                            <label for="donorMessage">Messaggio (opzionale)</label>
+                            <textarea id="donorMessage" name="message" rows="4" placeholder="Lascia un messaggio di supporto..."></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn-primary btn-large btn-full">
+                            <span id="submitText">Dona Ora</span>
+                            <span id="submitLoader" class="loader" style="display: none;"></span>
+                        </button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="success-message" style="display: none;">
+                        <div class="success-icon">✓</div>
+                        <h3>Grazie per il tuo contributo!</h3>
+                        <p>La tua donazione di <strong id="donatedAmount"></strong> è stata registrata con successo.</p>
+                        <button onclick="window.location.href='index.html'" class="btn-secondary">Torna alla Home</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Donors -->
+            <div class="recent-donors-section">
+                <h3>Donazioni Recenti</h3>
+                <div class="donors-grid" id="recentDonorsGrid">
+                    <p class="no-donors">Nessuna donazione ancora</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Progetto Capra. Tutti i diritti riservati.</p>
+            <div class="footer-links">
+                <a href="index.html#about">Chi Siamo</a>
+                <a href="index.html#goals">Obiettivi</a>
+                <a href="contribuisci.html">Contribuisci</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="contribute.js"></script>
+</body>
+</html>
