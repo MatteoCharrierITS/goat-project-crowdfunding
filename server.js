@@ -158,7 +158,7 @@ app.get('/api/donations', (req, res) => {
 app.post('/api/reset', (req, res) => {
     try {
         const initialData = {
-            goal: 10000,
+            goal: 7000,
             totalRaised: 0,
             donorsCount: 0,
             donations: []
