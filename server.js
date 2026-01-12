@@ -21,7 +21,7 @@ if (!fs.existsSync(path.join(__dirname, 'data'))) {
 function initializeData() {
     if (!fs.existsSync(DATA_FILE)) {
         const initialData = {
-            goal: 10000,
+            goal: 7000,
             totalRaised: 0,
             donorsCount: 0,
             donations: []
